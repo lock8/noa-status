@@ -14,6 +14,7 @@
     "watch": "webpack --watch"
   },
   "devDependencies": {
+    "async": "^1.5.2",
     "autoprefixer": "^6.3.6",
     "bootstrap-sass": "^3.3.6",
     "copy-webpack-plugin": "^3.0.1",

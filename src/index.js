@@ -1,4 +1,5 @@
-require('./styles/main.scss');
+var styles = require('./styles/main.scss');
+var elb    = require('./elb.js');
+var elm    = require('./Main');
 
-var Elm = require('./Main');
-Elm.Main.embed(document.getElementById('main'));
+elm.Main.embed(document.getElementById('main'));
