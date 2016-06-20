@@ -1,7 +1,7 @@
 {
     "version": "0.0.1",
-    "summary": "Noa service status SPA.",
-    "repository": "https://github.com/lock8/todo.git",
+    "summary": "Noa service status page.",
+    "repository": "https://github.com/lock8/noa-status.git",
     "license": "MIT",
     "source-directories": [
         "src"

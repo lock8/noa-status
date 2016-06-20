@@ -1,12 +1,12 @@
 {
   "name": "noa-status",
-  "description": "Noa service status SPA.",
+  "description": "Noa service status page.",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Luke Murphy",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lock8/todo.git"
+    "url": "https://github.com/lock8/noa-status.git"
   },
   "scripts": {
     "start": "webpack-dev-server --hot --inline --content-base src/",
