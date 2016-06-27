@@ -1,10 +1,16 @@
 module Model exposing (..)
 
-import Message exposing (Msg)
+import Message exposing (..)
+import Util exposing (getStatus)
 
 type alias Model =
   { status : List (String, String)
   }
 
 init : (Model, Cmd Msg)
-init = (Model []) ! []
+init =
+  let
+    model = Model []
+    cmds  = getStatus
+  in
+    (model, cmds)
