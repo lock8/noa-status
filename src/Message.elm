@@ -1,9 +1,10 @@
 module Message exposing (..)
 
-import HttpBuilder exposing (..)
+import HttpBuilder exposing (Error, Response)
+import Time exposing (Time)
 
 type Msg
-  = NoOp
-  | GetStatus
-  | Error (HttpBuilder.Error String)
-  | Fetched (HttpBuilder.Response (List (String, String)))
+  = GetStatus Time
+  | UpdateMessage Time
+  | Error (Error String)
+  | Fetched (List (Response (List (String, String))))

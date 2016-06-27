@@ -1,19 +1,29 @@
-module Util exposing (itemsDecoder, getStatus)
+module Util exposing (..)
 
 import Task exposing (Task)
 import Json.Decode as Decode
-import HttpBuilder exposing (..)
+import HttpBuilder exposing (send, stringReader, jsonReader, Error, Response)
 
-import Message exposing (..)
+import Message exposing (Msg(Error, Fetched))
+
+testURL : String
+testURL = "https://chjglxvc66.execute-api.eu-west-1.amazonaws.com/test/status"
+
+prodURL : String
+prodURL = "https://chjglxvc66.execute-api.eu-west-1.amazonaws.com/prod/status"
 
 itemsDecoder : Decode.Decoder (List (String, String))
 itemsDecoder = Decode.keyValuePairs Decode.string
 
+statusTask : String -> Task (Error String) (Response (List (String, String)))
+statusTask url =
+  send (jsonReader itemsDecoder) stringReader (HttpBuilder.get url)
+
 getStatus : Cmd Msg
 getStatus =
   let
-    testUrl = "https://chjglxvc66.execute-api.eu-west-1.amazonaws.com/test/status"
+   task1 = statusTask testURL
+   task2 = statusTask prodURL
+   finalTask = Task.sequence [task1, task2]
   in
-    HttpBuilder.get testUrl
-      |> send (jsonReader itemsDecoder) stringReader
-      |> Task.perform Error Fetched
+    Task.perform Error Fetched finalTask
