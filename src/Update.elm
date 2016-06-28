@@ -22,7 +22,9 @@ update msg model =
         } ! []
 
     Error err ->
-      { model | message = "Oops, something went wrong ... try again!" } ! []
+      { model |
+        message = "Oops, something went wrong ... try again!"
+      } ! []
 
     Fetched response ->
       let
