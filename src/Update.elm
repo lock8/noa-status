@@ -1,5 +1,7 @@
 module Update exposing (update)
 
+import Dict exposing (Dict)
+
 import Model exposing (Model)
 import Message exposing (..)
 import Util exposing (getStatus)
@@ -28,10 +30,19 @@ update msg model =
 
     Fetched response ->
       let
-        statuses = List.concat (List.map .data response)
+        xs = List.concat (List.map .data response)
+        ys = Dict.fromList xs
+        velodrome_test  = Dict.get "velodrome-testing-api-lb" ys
+        velodrome_prod  = Dict.get "velodrome-production-api-lb" ys
+        locksocket_test = Dict.get "locksocket-elb-testing" ys
+        locksocket_prod = Dict.get "locksocket-elb" ys
+        built =
+          [ ("velodrome", velodrome_test, velodrome_prod)
+          , ("locksocket", locksocket_test, locksocket_prod)
+          ]
       in
       { model |
-          status   = statuses,
+          status   = built,
           message  = "Refreshed just now.",
           lastPoll = 0
       } ! []
