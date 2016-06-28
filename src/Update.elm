@@ -29,6 +29,7 @@ update msg model =
         statuses = List.concat (List.map .data response)
       in
       { model |
-          status  = statuses,
-          message = "Refreshed just now."
+          status   = statuses,
+          message  = "Refreshed just now.",
+          lastPoll = 0
       } ! []
