@@ -1,10 +1,13 @@
 module Message exposing (..)
 
-import HttpBuilder exposing (Error, Response)
+import Http
 import Time exposing (Time)
+
+type alias LambdaResponse =
+  List (String, String)
 
 type Msg
   = GetStatus Time
   | UpdateMessage Time
-  | Error (Error String)
-  | Fetched (List (Response (List (String, String))))
+  | Error Http.Error
+  | Fetched (List LambdaResponse)
