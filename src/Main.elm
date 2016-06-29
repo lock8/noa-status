@@ -1,6 +1,6 @@
 module Main exposing (main)
 
-import Html.App exposing (..)
+import Html.App
 
 import Model exposing (init)
 import View exposing (view)
