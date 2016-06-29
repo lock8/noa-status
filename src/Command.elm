@@ -16,8 +16,9 @@ getStatus url =
 statusTask : Cmd Msg
 statusTask =
   let
-   testURL = "https://chjglxvc66.execute-api.eu-west-1.amazonaws.com/test/status"
-   prodURL = "https://chjglxvc66.execute-api.eu-west-1.amazonaws.com/prod/status"
+   baseURL = "https://chjglxvc66.execute-api.eu-west-1.amazonaws.com/"
+   testURL = baseURL ++ "test/status"
+   prodURL = baseURL ++ "prod/status"
 
    task1 = getStatus testURL
    task2 = getStatus prodURL

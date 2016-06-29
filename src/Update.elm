@@ -1,14 +1,14 @@
 module Update exposing (update)
 
-import Dict exposing (Dict)
-
-import Model exposing (Model)
+import Model exposing (..)
 import Message exposing (..)
 import Command exposing (statusTask)
+import Util exposing (buildStatus, getCond)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
   case msg of
+
     GetStatus _ ->
       model ! [statusTask]
 
@@ -30,8 +30,12 @@ update msg model =
       } ! []
 
     Fetched response ->
+      let
+          responses = List.concat response
+          statuses  = List.map buildStatus responses
+      in
       { model |
-          status   = [],
+          status   = statuses,
           message  = "Refreshed just now.",
           lastPoll = 0
       } ! []
