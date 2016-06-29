@@ -25,6 +25,7 @@ update msg model =
 
     Error err ->
       { model |
+        -- FIXME I think we can do better here.
         message = "Oops, something went wrong ... try again!"
       } ! []
 
