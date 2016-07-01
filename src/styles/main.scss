@@ -1,3 +1,83 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss';
 @import '~bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+// learning!
+// html *{ border: 1px black solid; }
+
+#outermost{
+  margin-top: 25px;
+}
+
+#header{
+  margin-bottom: 50px;
+}
+
+#header > div{
+  padding: 0px;
+  margin: 0px;
+}
+
+#model-message{
+  text-align: right;
+  margin-top: 20px;
+  @media only screen and (max-width : 856px){
+    text-align: left;
+    margin: 0px;
+  }
+
+  font-size: 13px;
+  color: #727272;
+  text-transform: uppercase;
+}
+
+#operational-message{
+  text-align: left;
+}
+
+#bodyHeader{
+  margin-bottom: 30px;
+  h4{
+    font-size: 13px;
+    font-weight: bold;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+  p{
+    color: #727272;
+  }
+}
+
+#footer{
+  padding-top: 8px;
+  border-top: 1px solid #e8e8e8;
+}
+
+#footer .col-md-6{
+  padding: 0px;
+}
+
+#footer-menu{
+  margin: 0px;
+  padding: 0px;
+
+  li{
+    list-style: none;
+    margin-right: 20px;
+    float: left;
+  }
+}
+
+#copyright {
+  float: right;
+  font-size: 0.9em;
+  margin: 0px;
+}
+
+tbody td{
+  padding-left: 0px !important;
+}
+
+.service-name{
+  text-transform: lowercase;
+}

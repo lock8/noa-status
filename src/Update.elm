@@ -14,6 +14,8 @@ update msg model =
     GetStatus _ ->
       model ! [statusTask]
 
+    -- FIXME: If there is some (Error err), this will still tick the message
+    --        Also, the time will never be reset to 0, and kepe ticking
     UpdateMessage _ ->
         let
           newTime    = model.lastPoll + 1
@@ -32,9 +34,9 @@ update msg model =
             "The network is experiencing problems, please try again later."
           Timeout ->
             "The connection timed out, please try again."
-          UnexpectedPayload x   ->
+          UnexpectedPayload _   ->
             "Received a bad response, ask for help at support@noa.one."
-          BadResponse       x y ->
+          BadResponse       _ _ ->
             "Received an unexpected response, ask for help at support@noa.one."
       in
       { model |
