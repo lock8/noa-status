@@ -8,19 +8,16 @@ type Service
   = Velodrome
   | Locksocket
 
-type Environment
-  = Testing
-  | Production
-
 type Condition
   = Healthy
   | Unhealthy
   | Down
+  | HealthError
 
 type alias Status =
   { service     : Service
-  , environment : Environment
-  , condition   : Condition
+  , testHealth  : Condition
+  , prodHealth  : Condition
   }
 
 type alias Model =

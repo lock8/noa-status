@@ -1,20 +1,27 @@
-module Util exposing (buildStatus, getCond)
+module Util exposing (buildStatus)
+
+import Dict exposing (Dict)
+import Maybe exposing (Maybe)
 
 import Model exposing (..)
 
-getCond : String -> Condition
-getCond cond =
-  case cond of
+cond : String -> Condition
+cond c =
+  case c of
     "HEALTHY"   -> Healthy
     "UNHEALTHY" -> Unhealthy
     "DOWN"      -> Down
-    _           -> Debug.crash "NotImplementedError: Unknown Condition!"
+    _           -> HealthError
 
-buildStatus : (String, String) -> Status
+buildStatus : List (String, String) -> List Status
 buildStatus resp =
-  case resp of
-    ("locksocket-elb", cond)              -> Status Locksocket Production (getCond cond)
-    ("locksocket-elb-testing", cond)      -> Status Locksocket Testing    (getCond cond)
-    ("velodrome-testing-api-lb", cond)    -> Status Velodrome  Testing    (getCond cond)
-    ("velodrome-production-api-lb", cond) -> Status Velodrome  Production (getCond cond)
-    (_, _) -> Debug.crash "NotImplementedError: Unknown Service!"
+  let
+    respDict = Dict.fromList resp
+    velodromeTestHealth  = cond (Maybe.withDefault "DOWN" (Dict.get "velodrome-testing-api-lb" respDict))
+    velodromeProdHealth  = cond (Maybe.withDefault "DOWN" (Dict.get "velodrome-production-api-lb" respDict))
+    locksocketTestHealth = cond (Maybe.withDefault "DOWN" (Dict.get "locksocket-elb-testing" respDict))
+    locksocketProdHealth = cond (Maybe.withDefault "DOWN" (Dict.get "locksocket-elb" respDict))
+  in
+     [ (Status Velodrome velodromeTestHealth velodromeProdHealth)
+     , (Status Locksocket locksocketTestHealth locksocketProdHealth)
+     ]

@@ -3,7 +3,7 @@ module Update exposing (update)
 import Model exposing (..)
 import Message exposing (..)
 import Command exposing (statusTask)
-import Util exposing (buildStatus, getCond)
+import Util exposing (buildStatus)
 
 update : Msg -> Model -> (Model, Cmd Msg)
 update msg model =
@@ -30,12 +30,8 @@ update msg model =
       } ! []
 
     Fetched response ->
-      let
-          responses = List.concat response
-          statuses  = List.map buildStatus responses
-      in
       { model |
-          status   = statuses,
+          status   = List.concat response |> buildStatus,
           message  = "Refreshed just now.",
           lastPoll = 0
       } ! []
