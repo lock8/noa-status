@@ -1,5 +1,7 @@
 module Update exposing (update)
 
+import Http exposing (..)
+
 import Model exposing (..)
 import Message exposing (..)
 import Command exposing (statusTask)
@@ -24,9 +26,19 @@ update msg model =
         } ! []
 
     Error err ->
+      let
+        msg = case err of
+          NetworkError ->
+            "The network is experiencing problems, please try again later."
+          Timeout ->
+            "The connection timed out, please try again."
+          UnexpectedPayload x   ->
+            "Received a bad response, ask for help at support@noa.one."
+          BadResponse       x y ->
+            "Received an unexpected response, ask for help at support@noa.one."
+      in
       { model |
-        -- FIXME I think we can do better here.
-        message = "Oops, something went wrong ... try again!"
+        message = msg
       } ! []
 
     Fetched response ->
