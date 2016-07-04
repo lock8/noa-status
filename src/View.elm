@@ -13,30 +13,23 @@ import Html.Shorthand exposing (..)
 view : Model -> Html Msg
 view model = div [id "outermost"]
   [ containerFluid_
-    [ colMdOffset_ 12 0 6 3 6 3
+    [ colMdOffset_ 12 0 4 4 4 4
       [ header model.message
-      , operationalMessage model.status
       ]
-    , colMdOffset_ 12 0 6 3 6 3
+    , colMdOffset_ 12 0 4 4 4 4
       [ bodyHeader
       , statusTable model.status
       ]
-    , colMdOffset_ 12 0 6 3 6 3 [footer]
+    , colMdOffset_ 12 0 4 4 4 4 [footer]
     ]
   ]
 
 header : String -> Html Msg
 header msg = div [id "header"]
   [ colMd_ 8 6 4
-    [ img [class "img-responsive", id "logo", src "img/logo.png"] []
+    [ img [id "logo", src "img/logo.png"] []
     ]
   , colMd_ 12 6 8 [h4 [id "model-message" ] [text msg]]
-  ]
-
-operationalMessage : List Status -> Html Msg
-operationalMessage statuses =
-  div [id "operational-message"]
-  [
   ]
 
 bodyMarkdown : String

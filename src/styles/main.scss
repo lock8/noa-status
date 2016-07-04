@@ -5,12 +5,17 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 // learning!
 // html *{ border: 1px black solid; }
 
+#logo{
+  width: 117px;
+  height: 25px;
+}
+
 #outermost{
   margin-top: 25px;
 }
 
 #header{
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 }
 
 #header > div{
@@ -20,19 +25,21 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 #model-message{
   text-align: right;
-  margin-top: 20px;
+  margin-top: 10px;
   @media only screen and (max-width : 856px){
     text-align: left;
-    margin: 0px;
   }
 
-  font-size: 13px;
+  font-size: 12px;
+  font-style: italic;
   color: #727272;
   text-transform: uppercase;
 }
 
 #operational-message{
   text-align: left;
+  border-color: #99ccb2;
+  color: #396;
 }
 
 #bodyHeader{
