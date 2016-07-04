@@ -36,7 +36,7 @@ bodyMarkdown : String
 bodyMarkdown = """
 #### What is this site?
 
-We monitor the status of `api.lock8.me` and all its related services.
+We monitor the status of `api.noa.one` and all its related services.
 If there are interruptions in service, we'll let you know here.
 """
 
