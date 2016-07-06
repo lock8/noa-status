@@ -69,7 +69,7 @@ generateStatusTable status =
   tr_
   [ td_ [ span' {class="service-name"} [text (toString status.service)] ]
   , td_ [ span' (label status.testHealth) [text (toString status.testHealth)] ]
-  , td_ [ span' (label status.testHealth) [text (toString status.prodHealth)] ]
+  , td_ [ span' (label status.prodHealth) [text (toString status.prodHealth)] ]
   ]
 
 footer : Html Msg
